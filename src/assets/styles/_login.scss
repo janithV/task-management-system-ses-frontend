@@ -1,0 +1,19 @@
+.login-screen {
+    padding-top: 90px;
+    text-align: center;
+
+    .login-form {
+        display: flex;
+        justify-content: center;
+
+        .register-text {
+            padding-top: 10px;
+            font-size: 12px;
+
+            a {
+                text-decoration: none;
+            }
+            
+        }
+    }
+}

@@ -1,0 +1,3 @@
+// COMMON DEFINITIONS //
+export const USER_SESSION_KEY = "SYS_USER_DATA";
+
