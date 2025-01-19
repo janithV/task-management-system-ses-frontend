@@ -6,6 +6,7 @@ import { Logout } from "../components/pages/auth/logout/logout";
 import MainLayout from "../components/layout/MainLayout";
 import Dashboard from "../components/pages/dashboard/Dashboard";
 import Register from "../components/pages/auth/register/Register";
+import TaskForm from "../components/pages/task-form/TaskForm";
 
 
 export const router = createBrowserRouter([
@@ -28,6 +29,14 @@ export const router = createBrowserRouter([
             {
                 path: '/dashboard',
                 element: <Dashboard />
+            },
+            {
+                path: '/task',
+                element: <TaskForm />
+            },
+            {
+                path: '/task/:id',
+                element: <TaskForm />
             }
 
         ]
