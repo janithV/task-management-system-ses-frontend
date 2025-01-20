@@ -51,11 +51,17 @@ export const resetTaskResponse = () => async (dispatch) => {
     dispatch({type: taskConstants.RESET_TASK_RESPONSE, payload: payload});
 }
 
-export const getTasks = () => async (dispatch) => {
+export const getTasks = (filter) => async (dispatch) => {
     dispatch(showBackdrop())
 
     let config = {
         url: "tasks"
+    }
+
+    if (filter) {
+        config.params = {
+            filter: filter
+        }
     }
 
     let response = await getReq(config);
