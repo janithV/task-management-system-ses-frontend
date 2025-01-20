@@ -167,6 +167,7 @@ const TaskForm = () => {
                                 <Row>
                                     <Col sm={6} className='mb-2'>
                                         <DatePicker
+                                            minDate={new Date()}
                                             placeholderText='Due Date'
                                             id='dueDate'
                                             selected={dueDate}

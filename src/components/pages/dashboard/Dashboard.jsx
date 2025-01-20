@@ -19,8 +19,10 @@ const Dashboard = () => {
 
     // verify and delete task
     const handleTaskDelete = (id) => {
-        alert('Are you sure you want to delete this task?')
-        dispatch(deleteTask(id))
+        const result = window.confirm('Are you sure you want to delete this task?')
+        if(result) {
+            dispatch(deleteTask(id))
+        }
     }
 
     // navigate to edit task page
@@ -124,7 +126,7 @@ const Dashboard = () => {
                                                     <td>{moment(task.dueDate).format('DD/MM/YYYY')}</td>
                                                     <td className='text-center'>{statusText}</td>
                                                     <td>
-                                                        <div className='d-flex justify-content-around'>
+                                                        <div className='d-flex justify-content-around gap-2'>
                                                             <Button variant='primary' onClick={() => handleEditTask(task._id)}>Edit</Button>
                                                             <Button variant='danger' onClick={() => handleTaskDelete(task._id)}>Delete</Button>
                                                         </div>
