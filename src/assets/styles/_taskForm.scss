@@ -5,16 +5,20 @@
         color: $primary-color;
     }
 
-    .rmdp-container {
+    .react-datepicker-wrapper {
         width: 100%;
+        margin-bottom: 16px;
 
-        .rmdp-input {
-            border: 1px solid $primary-color;
-            padding: 20px 5px;
-            border-radius: 10px;
+        input {
             width: 100%;
+            padding: 6px 12px;
+            border-radius: 10px;
         }
     }
 
-
+    .form-footer {
+        display: flex;
+        gap: 10px;
+        justify-content: flex-end;
+    }
 }
