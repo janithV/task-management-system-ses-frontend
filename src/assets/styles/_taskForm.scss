@@ -1,0 +1,24 @@
+.task-form {
+
+    h3,
+    h6 {
+        color: $primary-color;
+    }
+
+    .react-datepicker-wrapper {
+        width: 100%;
+        margin-bottom: 16px;
+
+        input {
+            width: 100%;
+            padding: 6px 12px;
+            border-radius: 10px;
+        }
+    }
+
+    .form-footer {
+        display: flex;
+        gap: 10px;
+        justify-content: flex-end;
+    }
+}

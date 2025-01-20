@@ -33,7 +33,7 @@ const NotificationToast = ({ type, message }) => {
                     <Toast.Body className={type === 'success' ? 'success-toast' : ''}>
                         <div className='custom-toast-body'>
                             <img src={type === 'error' ? AlertErrorIcon : AlertSuccessIcon} alt="" />
-                            <div className='custom-toast-body-message'>
+                            <div className='custom-toast-body-message' style={{ color: 'black'}}>
                                 {message}
                             </div>
                         </div>

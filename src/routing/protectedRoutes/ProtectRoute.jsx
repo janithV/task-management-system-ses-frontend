@@ -6,8 +6,8 @@ const ProtectRoute = ({children}) => {
 
     let userData = JSON.parse(localStorage.getItem(USER_SESSION_KEY));
     let location = useLocation();
-
-    if (userData?.length === 0) {
+   
+    if (!userData) {
         return <Navigate to="/" state={{from: location}} replace/>
     }
 

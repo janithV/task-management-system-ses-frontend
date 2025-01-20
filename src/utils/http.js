@@ -86,16 +86,21 @@ export const deleteReq = async (config) => {
 const isTokenExpired = () => {
 
     let sessionObj = getAPITokens("refresh");
+    console.log('sessionObj', sessionObj);
+    
     if(sessionObj){
   
         const sessionTimeout = process.env.REACT_APP_SESSION_TIMEOUT;
         const now = Date.now();
         const expiry = Date.parse(sessionObj.accessTokenExpiry);
   
-        let differnce = Math.round((now - expiry) / 60000);
-  
-        if(differnce >= sessionTimeout){
-            return true;
+        let difference = Math.round((expiry - now) / 60000); //convert to minutes
+
+        if (difference > 0 && difference <= sessionTimeout) {
+            return false;
+        }
+        else {
+            return true
         }
   
     }
@@ -107,11 +112,13 @@ const isTokenExpired = () => {
   const refreshToken = async () => {
   
     let sessionObj = getAPITokens("refresh");
-    axioDefaults.method = "post"
+    axioDefaults.method = "GET"
     axioDefaults.url = "/auth/refresh-token"
     axioDefaults.headers["Authorization"] = "Bearer " + sessionObj.refreshToken;
   
     let resp = await axios(axioDefaults);
+    console.log('resp', resp);
+    
     if (resp.status === 200) {
         let newSession = resp.data;
         setNewToken(newSession);

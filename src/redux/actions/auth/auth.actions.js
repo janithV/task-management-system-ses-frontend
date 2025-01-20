@@ -15,7 +15,6 @@ export const login = ( payload) => async (dispatch) => {
     }
 
     let response = await postReq(config);
-    console.log('response',response);
     
     if (!response.isException) {
         if (response.response.status === 200){

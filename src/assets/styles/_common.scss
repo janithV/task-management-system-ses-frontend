@@ -1,5 +1,29 @@
 body {
   font-family: "Inter", sans-serif;
+  color: white;
+}
+
+.navbar {
+  background-color: $primary-color;
+  a {
+    color: white;
+    text-decoration: none;
+  }
+ 
+}
+
+.custom-card {
+  .card-title {
+    font-weight: 500;
+  }
+  .card-subtitle {
+    font-size: 12px;
+  }
+
+  .card-text {
+    font-size: 25px;
+    font-weight: 600;
+  }
 }
 
 h1 {
@@ -19,7 +43,6 @@ li {
   text-align: left;
 }
 .btn {
-  padding: 17px 60px 17px 60px;
   border-radius: 10px !important;
   font-size: 17px;
   font-weight: 400;
