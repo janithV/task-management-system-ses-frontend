@@ -10,10 +10,10 @@ export const Logout = () => {
     const { isLogginSuccess,  } = useSelector((state) => state.auth);
 
     useEffect(() => {
-        dispatch(destroyLoginData())
+        dispatch(destroyLoginData()) // Destroy login data to logout user
     },[dispatch])
 
-    if (!isLogginSuccess) {
+    if (!isLogginSuccess) { // Redirect to login if logout is successful
         return <Navigate to="/" replace />
     }
     

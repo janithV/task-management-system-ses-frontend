@@ -12,23 +12,28 @@ const Dashboard = () => {
     const { tasks, analytics } = useSelector(state => state.task);
     const [filter, setFilter] = useState(1);
 
+    // navigate to add task page
     const handleAddBtnClick = useCallback(() => {
         navigate('/task')
     }, [navigate])
 
+    // verify and delete task
     const handleTaskDelete = (id) => {
         alert('Are you sure you want to delete this task?')
         dispatch(deleteTask(id))
     }
 
+    // navigate to edit task page
     const handleEditTask = (id) => {
         navigate(`/task/${id}`)
     }
 
+    // handle filter change
     const handleFilterChange = (event) => {        
         setFilter(event.target.value)
     }
 
+    // filter tasks based on status or due date
     const handleFilterSubmit = () => {
         dispatch(getTasks(filter))
     }

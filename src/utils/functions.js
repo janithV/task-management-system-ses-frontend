@@ -12,6 +12,7 @@ export const isEmptyObj = (object) => {
   }
 };
 
+// returns access or refresh token based on the tokenType
 export const getAPITokens = (tokenType) => {
   let userData = JSON.parse(localStorage.getItem(USER_SESSION_KEY));
   if (!isEmptyObj(userData)) {
@@ -28,6 +29,7 @@ export const getAPITokens = (tokenType) => {
   return false;
 };
 
+// update the user session data in the local storage
 export const setNewToken = (sessionObj) => {
 
   let userData = JSON.parse(localStorage.getItem(USER_SESSION_KEY));

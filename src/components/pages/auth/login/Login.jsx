@@ -39,7 +39,7 @@ const Login = () => {
         },
     });
 
-    if (isLogginSuccess) {
+    if (isLogginSuccess) { // Redirect to dashboard if login is successful
         return <Navigate to="/dashboard" replace />;
     }
 

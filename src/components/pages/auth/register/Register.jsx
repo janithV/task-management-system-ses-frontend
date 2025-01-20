@@ -57,7 +57,7 @@ const Register = () => {
     });
 
     useEffect(() => {
-        if(isRegisterSuccess) {
+        if(isRegisterSuccess) { // Redirect to login if register is successful
             dispatch(updateRegisterStatus())
             navigate('/')
         }

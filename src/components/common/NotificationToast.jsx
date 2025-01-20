@@ -9,7 +9,7 @@ const NotificationToast = ({ type, message }) => {
 
     const dispatch = useDispatch()
 
-    const handleAutoClose = () => {
+    const handleAutoClose = () => { // Hide the notification after 3 seconds
         dispatch(hideNotification({
             visibility: false,
             type: '',
