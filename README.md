@@ -1,70 +1,63 @@
-# Getting Started with Create React App
+# Task Management System - Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
+This is the **frontend** for the **Task Management System**, built using **ReactJS**. The application provides a user-friendly interface for managing tasks, including user authentication (login & register) and state management using **Redux**. The app interacts with the backend API to fetch, create, update, and delete tasks. The application is deployed on **Heroku**.
 
-## Available Scripts
+## Features
+- User authentication (Login & Register)
+- Redux for state management
+- Fetch tasks from the backend API
+- Create, update, and delete tasks
+- Responsive UI
+- Hosted on **Heroku**
 
-In the project directory, you can run:
+## Setup Instructions
 
-### `npm start`
+### 1. Clone the Repository
+```sh
+git clone https://github.com/janithV/task-management-system-ses-frontend
+cd <project-directory>
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### 2. Install Dependencies
+Ensure you have **Node.js** (with npm version 10.7) installed.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```sh
+npm install
+```
 
-### `npm test`
+### 3. Create a `.env` File
+Create a `.env` file in the root directory and add the following environment variables:
+```env
+REACT_APP_API_URL=https://<your-backend-api-url>
+REACT_APP_REQUEST_TIMEOUT= <request-timeout>
+REACT_APP_SESSION_TIMEOUT= <session-timeout>
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+> **Note:** Replace `<your-backend-api-url>` with the actual API URL of the backend.
 
-### `npm run build`
+### 4. Run the Application
+Start the development server using:
+```sh
+npm start
+```
+The application will run on `http://localhost:3000/` by default.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Deployment
+This application is deployed on **Heroku**. You can access it at:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+[**Live Application**](<your-heroku-app-url>)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Technologies Used
+- **ReactJS** - Frontend framework
+- **Redux** - State management
+- **Axios** - API calls
+- **Bootstrap / Tailwind CSS** - UI styling
+- **Heroku** - Deployment platform
 
-### `npm run eject`
+## License
+This project is open-source and available under the **MIT License**.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+---
+Feel free to contribute or raise issues if you find any!
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

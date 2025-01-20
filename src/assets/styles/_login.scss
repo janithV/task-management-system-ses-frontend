@@ -1,0 +1,23 @@
+.login-screen {
+    padding-top: 90px;
+    text-align: center;
+
+    h3, h5 {
+        color: $primary-color;
+    }
+
+    .login-form {
+        display: flex;
+        justify-content: center;
+
+        .register-text {
+            padding-top: 10px;
+            font-size: 12px;
+
+            a {
+                text-decoration: none;
+            }
+            
+        }
+    }
+}
