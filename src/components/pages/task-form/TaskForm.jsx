@@ -34,7 +34,7 @@ const TaskForm = () => {
             title: "",
             description: "",
             dueDate: "",
-            status: ""
+            status: 1
         },
         enableReinitialize: true,
         validationSchema: validationSchema,
