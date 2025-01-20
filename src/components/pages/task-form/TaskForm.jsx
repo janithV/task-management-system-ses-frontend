@@ -34,7 +34,7 @@ const TaskForm = () => {
             title: "",
             description: "",
             dueDate: "",
-            status: 1
+            status: ""
         },
         enableReinitialize: true,
         validationSchema: validationSchema,
@@ -47,7 +47,6 @@ const TaskForm = () => {
             };
 
             if (id) {
-                console.log('payload', payload);
                 dispatch(updateTask(payload, id));
                 dispatch(resetTask())
             }
@@ -57,11 +56,13 @@ const TaskForm = () => {
         },
     });
 
+    // handle date change
     const handleDateChange = (date) => {
         formik.setFieldValue("dueDate", date);
         setDueDate(date);
     }
 
+    // reset form on clear
     const handleResetForm = () => {
         if (id) {
             formik.setFieldValue('title', task.title);
@@ -91,8 +92,6 @@ const TaskForm = () => {
     }, [id]);
 
     useEffect(() => {
-        console.log('task', task);
-
         if (task) {
             formik.setFieldValue('title', task.title);
             formik.setFieldValue('description', task.description);

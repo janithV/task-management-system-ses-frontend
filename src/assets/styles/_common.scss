@@ -9,7 +9,11 @@ body {
     color: white;
     text-decoration: none;
   }
- 
+}
+
+.table-filter {
+  display: flex;
+  gap: 10px;
 }
 
 .custom-card {

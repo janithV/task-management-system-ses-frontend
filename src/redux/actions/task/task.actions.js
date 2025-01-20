@@ -3,6 +3,7 @@ import { taskConstants } from "../../types";
 import { hideBackdrop, showBackdrop } from "../common/backdrop.actions"
 import { showNotification } from "../common/notification.actions"
 
+// create task action creator
 export const createTask = (task) => async (dispatch) => {
     dispatch(showBackdrop())
 
@@ -12,7 +13,6 @@ export const createTask = (task) => async (dispatch) => {
     }
 
     let response = await postReq(config);
-    console.log('response', response);
     if (!response.isException) {
         if (response.response.data.statusCode === 201) {
 
@@ -44,6 +44,7 @@ export const createTask = (task) => async (dispatch) => {
      dispatch(hideBackdrop());
 }
 
+// reset task response action creator
 export const resetTaskResponse = () => async (dispatch) => {
     let payload = {
         status: false
@@ -51,15 +52,21 @@ export const resetTaskResponse = () => async (dispatch) => {
     dispatch({type: taskConstants.RESET_TASK_RESPONSE, payload: payload});
 }
 
-export const getTasks = () => async (dispatch) => {
+// get tasks action creator
+export const getTasks = (filter) => async (dispatch) => {
     dispatch(showBackdrop())
 
     let config = {
         url: "tasks"
     }
 
+    if (filter) {
+        config.params = {
+            filter: filter
+        }
+    }
+
     let response = await getReq(config);
-    console.log('response', response);
     if (!response.isException) {
         if (response.response.data.statusCode === 200) {
             let payload = {
@@ -78,6 +85,7 @@ export const getTasks = () => async (dispatch) => {
     dispatch(hideBackdrop());
 }
 
+// get analytics action creator
 export const getAnalytics = () => async (dispatch) => {
     dispatch(showBackdrop())
 
@@ -86,7 +94,6 @@ export const getAnalytics = () => async (dispatch) => {
     }
 
     let response = await getReq(config);
-    console.log('response', response);
     if (!response.isException) {
         if (response.response.data.statusCode === 200) {
             let payload = {
@@ -105,6 +112,7 @@ export const getAnalytics = () => async (dispatch) => {
     dispatch(hideBackdrop());
 }
 
+// delete task action creator
 export const deleteTask = (id) => async(dispatch) => {
     dispatch(showBackdrop())
 
@@ -113,7 +121,6 @@ export const deleteTask = (id) => async(dispatch) => {
     }
 
     let response = await deleteReq(config);
-    console.log('response', response);
     if (!response.isException) {
         if (response.response.data.statusCode === 200) {
             dispatch(showNotification({
@@ -136,6 +143,7 @@ export const deleteTask = (id) => async(dispatch) => {
     dispatch(hideBackdrop());
 }
 
+// get task by id action creator
 export const getTask = (id) => async(dispatch) => {
     dispatch(showBackdrop())
 
@@ -162,6 +170,7 @@ export const getTask = (id) => async(dispatch) => {
     dispatch(hideBackdrop());
 }
 
+// update task action creator
 export const updateTask = (task, id) => async(dispatch) => {
     dispatch(showBackdrop())
 
@@ -195,6 +204,7 @@ export const updateTask = (task, id) => async(dispatch) => {
     dispatch(hideBackdrop());
 }
 
+// reset task data action creator
 export const resetTask = () => async(dispatch) => {
     let payload = {
         task: null

@@ -14,6 +14,7 @@ let axioDefaults = {
         "X-Requested-With": "XMLHttpRequest",
     }
 };
+// common axios request handling function with helper functions
 
 let axiosReq = async (config) => {
 
@@ -26,13 +27,13 @@ let axiosReq = async (config) => {
         }
 
         let newConfigs = {
-                ...axioDefaults,
-                headers: {
-                    ...axioDefaults.headers
-                },
-                ...config
-            };
-        
+            ...axioDefaults,
+            headers: {
+                ...axioDefaults.headers
+            },
+            ...config
+        };
+
 
         let resp = await instance(newConfigs);
         return {
@@ -40,7 +41,7 @@ let axiosReq = async (config) => {
             response: resp
         };
     } catch (err) {
-    
+
         return {
             isException: true,
             error: err
@@ -82,18 +83,17 @@ export const deleteReq = async (config) => {
     return await axiosReq(newConfig);
 };
 
-
+//check if the token has expired by comparing the expiry time with the current time
 const isTokenExpired = () => {
 
     let sessionObj = getAPITokens("refresh");
-    console.log('sessionObj', sessionObj);
-    
-    if(sessionObj){
-  
+
+    if (sessionObj) {
+
         const sessionTimeout = process.env.REACT_APP_SESSION_TIMEOUT;
         const now = Date.now();
         const expiry = Date.parse(sessionObj.accessTokenExpiry);
-  
+
         let difference = Math.round((expiry - now) / 60000); //convert to minutes
 
         if (difference > 0 && difference <= sessionTimeout) {
@@ -102,35 +102,39 @@ const isTokenExpired = () => {
         else {
             return true
         }
-  
-    }
-  
-    return false;
-  
-  }
 
-  const refreshToken = async () => {
-  
+    }
+
+    return false;
+
+}
+
+//retrieve a new access token using the refresh token
+const refreshToken = async () => {
+
     let sessionObj = getAPITokens("refresh");
     axioDefaults.method = "GET"
     axioDefaults.url = "/auth/refresh-token"
     axioDefaults.headers["Authorization"] = "Bearer " + sessionObj.refreshToken;
-  
+
     let resp = await axios(axioDefaults);
-    console.log('resp', resp);
-    
+
     if (resp.status === 200) {
         let newSession = resp.data;
         setNewToken(newSession);
+        return true
     }
-    else {
-        window.location.href = '/logout';
-    }
-  }
-  
-  instance.interceptors.request.use(async function(req){
-    if(isTokenExpired()){
+}
+
+// axios request interceptor to check if the token has expired and refresh it
+instance.interceptors.request.use(async function (req) {
+    if (isTokenExpired()) {
         await refreshToken();
     }
+    // Add Authorization Header
+    let access_token = getAPITokens("access");
+    if (access_token) {
+        req.headers["Authorization"] = "Bearer " + access_token;
+    }
     return req;
-  });
+});

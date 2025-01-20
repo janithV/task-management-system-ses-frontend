@@ -4,7 +4,7 @@ import { postReq } from "../../../utils/http"
 import { showNotification } from "../common/notification.actions"
 import { USER_SESSION_KEY } from "../../../configs/definitions"
 
-
+// login action creator
 export const login = ( payload) => async (dispatch) => {
 
     dispatch(showBackdrop())
@@ -44,6 +44,8 @@ export const login = ( payload) => async (dispatch) => {
     dispatch(hideBackdrop());
     
 }
+
+// logout action creator
 export const destroyLoginData = () => async (dispatch) => {
     dispatch(showBackdrop());
 
@@ -60,6 +62,7 @@ export const destroyLoginData = () => async (dispatch) => {
     dispatch(hideBackdrop());
 }
 
+// set login data action creator
 export const setLoginData = (data, isLogin) => (dispatch) => {
     dispatch({
         type: authConstants.AUTH_UPDATE_LOGIN_DATA,
@@ -67,6 +70,7 @@ export const setLoginData = (data, isLogin) => (dispatch) => {
     });
 };
 
+//register user action creator
 export const register = (payload) => async(dispatch) => {
     dispatch(showBackdrop())
 
@@ -109,6 +113,7 @@ export const register = (payload) => async(dispatch) => {
 
 }
 
+// update register status in redux action creator
 export const updateRegisterStatus = () => (dispatch) => {
     dispatch({
         type: authConstants.REGISTER_SUCCESS,

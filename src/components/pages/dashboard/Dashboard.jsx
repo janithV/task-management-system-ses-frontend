@@ -1,5 +1,5 @@
-import React, { useCallback, useEffect } from 'react';
-import { Button, Col, Row, Table } from 'react-bootstrap';
+import React, { useCallback, useEffect, useState } from 'react';
+import { Button, Col, Form, Row, Table } from 'react-bootstrap';
 import AnalyticCard from '../../common/AnalyticCard';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -9,20 +9,33 @@ import moment from 'moment';
 const Dashboard = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch();
-
     const { tasks, analytics } = useSelector(state => state.task);
+    const [filter, setFilter] = useState(1);
 
+    // navigate to add task page
     const handleAddBtnClick = useCallback(() => {
         navigate('/task')
     }, [navigate])
 
+    // verify and delete task
     const handleTaskDelete = (id) => {
         alert('Are you sure you want to delete this task?')
         dispatch(deleteTask(id))
     }
 
+    // navigate to edit task page
     const handleEditTask = (id) => {
         navigate(`/task/${id}`)
+    }
+
+    // handle filter change
+    const handleFilterChange = (event) => {        
+        setFilter(event.target.value)
+    }
+
+    // filter tasks based on status or due date
+    const handleFilterSubmit = () => {
+        dispatch(getTasks(filter))
     }
 
     useEffect(() => {
@@ -53,8 +66,27 @@ const Dashboard = () => {
                 </Col>
             </Row>
             <Row>
+                <Col md={4}>
+                    <div className='table-filter mt-5'>
+                        <Form.Select
+                            aria-label="Default select example"
+                            value={filter}
+                            onChange={handleFilterChange}
+                            id='status'
+                            name='status'
+                        >
+                            <option value={1}>Pending</option>
+                            <option value={2}>In progress</option>
+                            <option value={3}>Completed</option>
+                            <option value={4}>Due date</option>
+                        </Form.Select>
+                        <Button onClick={handleFilterSubmit}>Filter</Button>
+                    </div>
+                </Col>
+            </Row>
+            <Row>
                 <Col sm={12}>
-                    <div className='table-view mt-5'>
+                    <div className='table-view mt-4'>
                         <div className="table-responsive">
                             <Table width={'100%'} className="table">
                                 <thead>
@@ -85,7 +117,7 @@ const Dashboard = () => {
                                                     statusText = 'N/A'
                                                     break;
                                             }
-                                            return(
+                                            return (
                                                 <tr key={index}>
                                                     <td>{task.title}</td>
                                                     <td>{task.description}</td>
@@ -100,14 +132,14 @@ const Dashboard = () => {
                                                 </tr>
                                             )
                                         })
-                                        :
-                                        <tr>
-                                        <td colSpan={5}>
-                                           <div>
-                                                  <p className='text-center'>No tasks found.</p>
-                                           </div>
-                                        </td>
-                                    </tr>
+                                            :
+                                            <tr>
+                                                <td colSpan={5}>
+                                                    <div>
+                                                        <p className='text-center'>No tasks found.</p>
+                                                    </div>
+                                                </td>
+                                            </tr>
                                     }
                                 </tbody>
                             </Table>
